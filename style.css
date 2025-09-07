@@ -144,7 +144,7 @@ a:hover {
 /* Floating Navigation */
 .floating-nav {
   position: fixed;
-  left: -220px;
+  left: -250px;
   top: 50%;
   transform: translateY(-50%);
   background: rgba(255, 255, 255, 0.95);
