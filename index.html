@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agentic AI Mail Assistant - Project Report</title>
+    <link rel="stylesheet" href="style.css?v=790">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- PINNED HERO -->
+  <section class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>Project Report - Agentic AI</h1>
+      <p>September 11, 2025 | Report</p>
+    </div>
+  </section>
+
+  <!-- Acknowledgment Section -->
+  <section class="acknowledgment">
+    <h2>Acknowledgment</h2>
+    <p>
+      I would like to express my deepest gratitude to 
+      <a href="https://www.ten.com/en" target="_blank" rel="noopener">T.EN Global Business Services Pvt. Ltd.</a> 
+      for giving me the opportunity to work on this project, special thanks to my mentor, Ms.
+      Geetika Pandey, for providing the support and guidance throughout this journey, 
+      and to my peers for being really nice to me, and to everyone who
+      supported me throughout the development of this project. Their guidance and encouragement
+      played a vital role in completing the <strong>Agentic AI Mail Assistant</strong>.
+    </p>
+  </section>
+
+  <!-- Abstract Section -->
+  <section class="abstract">
+    <h2>Abstract</h2>
+    <p>
+      This report presents the design and development of an Agentic AI Mail Assistant,
+      a system that leverages Large Language Models (LLMs) and APIs to automate email management. 
+      The purpose of this report is to document the complete workflow of the project — from 
+      conception and methodology to implementation and results — while highlighting the challenges 
+      and solutions encountered during development.
+    </p>
+    <ul>
+      <li>The project focuses on simplifying the way users interact with their inboxes. Using the Gmail API, the assistant retrieves the latest important emails, processes their contents, and stores them in structured JSON files.</li>
+      <li>With the help of an LLM (initially LLaMA 3 via Ollama, later optimized using the Gemini API), these emails are summarized into concise, meaningful insights.</li>
+      <li>A user-friendly Streamlit interface then allows users to view summaries, expand to see the full email, generate AI-powered draft responses, and send replies directly using the Gmail API.</li>
+    </ul>
+    <p>
+      This integration of retrieval, summarization, and automated response generation demonstrates how agentic AI systems can reduce cognitive load, save time, and enhance productivity in everyday tasks.
+    </p>
+  </section>
+
+  <!-- Floating Navigation -->
+  <nav class="floating-nav" id="floating-nav">
+    <ul>
+      <li><a href="#introduction" class="nav-link">Introduction</a></li>
+      <li><a href="#company-overview" class="nav-link">Company Overview</a></li>
+      <li><a href="#internship-overview" class="nav-link">Internship Overview</a></li>
+      <li><a href="#knowledge-skills" class="nav-link">Knowledge and Skills</a></li>
+      <li><a href="#problems-solutions" class="nav-link">Problems & Solutions</a></li>
+      <li><a href="#conclusion" class="nav-link">Conclusion & Suggestions</a></li>
+      <li><a href="#references" class="nav-link">References</a></li>
+    </ul>
+  </nav>
+
+  <section id="introduction" class="content">
+    <div class="img-container">
+      <img src="assets/glowing-skyscrapers-illuminate-futuristic-cityscape-night-generated-by-ai.jpg" alt="Introduction Image" class="img">
+      <div class="heading-container">
+        <h1 class="heading">Introduction</h1>
+      </div>
+    </div>
+    <div class="body">
+      <p>Email is one of the most widely used forms of digital communication, but managing it effectively continues to be a major challenge. Overflowing inboxes, lengthy email threads, and repetitive responses often consume valuable time and attention, reducing overall productivity. As organizations and individuals increasingly rely on email for professional and personal communication, the need for intelligent systems to simplify inbox management has grown.</p>
+      <p>This project addresses that challenge by developing an Agentic AI Mail Assistant — a system designed to automate and streamline email handling using the power of Large Language Models (LLMs). The assistant performs three core tasks:</p>
+      <ul>
+        <li><strong>Retrieval</strong> - Fetching the most recent important emails using the Gmail API.</li>
+        <li><strong>Summarization</strong> - Condensing long or complex messages into concise summaries through an LLM.</li>
+        <li><strong>Response Generation</strong> - Providing AI-powered draft replies that users can review, modify, and send directly via the Gmail API.</li>
+      </ul>
+      <p>The project began with experiments using a local LLaMA 3 model via Ollama, which offered strong capabilities but limited speed. To improve responsiveness, the system was later optimized with the Gemini API, delivering faster inference and more reliable results. On the front end, a simple yet effective Streamlit-based interface was built to give users direct control over their inbox.</p>
+      <p>Through this integration of retrieval, summarization, and intelligent response generation, the Mail Agent demonstrates how agentic AI systems can be applied to real-world productivity challenges, reducing manual effort while keeping the user in control.</p>
+    </div>
+  </section>
+
+  <!-- Key Features Section -->
+  <section class="key-features">
+    <div class="features-container">
+      <h2 class="features-title">Key Features</h2>
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <img src="assets/search-email-document-d-icon-quick-efficient-message-retrieval-digital-communication-white-background-360433414.webp" alt="Email Retrieval" />
+          </div>
+          <h3>Email Retrieval</h3>
+          <p>Automatically fetch and process emails using Gmail API integration</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <img src="assets/images.png" alt="AI Summarization" />
+          </div>
+          <h3>AI Summarization</h3>
+          <p>Generate concise summaries using LLaMA 3 and Gemini API</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <img src="assets/images (1).png" alt="Smart Responses" />
+          </div>
+          <h3>Smart Responses</h3>
+          <p>AI-powered draft response generation with context awareness</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <img src="assets/6047946.png" alt="User Interface" />
+          </div>
+          <h3>User Interface</h3>
+          <p>Intuitive Streamlit interface for seamless email management</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Company Overview Section -->
+  <section id="company-overview" class="content">
+    <div class="img-container">
+      <img src="assets\glowing-molecular-structure-futuristic-galaxy-backdrop-generated-by-ai (1).jpg" alt="Company Overview Image" class="img">
+      <div class="heading-container">
+        <h1 class="heading">Company Overview</h1>
+      </div>
+    </div>
+    <div class="body">
+      <div class="company-info">
+        <div class="company-logo">
+          <a href="https://www.ten.com/en" target="_blank" rel="noopener">
+            <img src="assets/TECHNIP_ENERGIES_LOGO_HORIZONTAL_CMJN.png" alt="T.EN Global Business Services Logo" />
+          </a>
+        </div>
+        <div class="company-text">
+          <p><a href="https://www.ten.com/en" target="_blank" rel="noopener">T.EN Global Business Services Pvt. Ltd.</a> is a leading technology solutions provider specializing in digital transformation and innovative business services. Founded with a vision to bridge the gap between traditional business processes and cutting-edge technology, T.EN has established itself as a trusted partner for organizations seeking to modernize their operations.</p>
+          <p>The company operates across multiple domains including:</p>
+          <ul>
+            <li><strong>Artificial Intelligence & Machine Learning</strong> - Developing intelligent systems for automation and decision-making</li>
+            <li><strong>Cloud Solutions</strong> - Providing scalable and secure cloud infrastructure services</li>
+            <li><strong>Data Analytics</strong> - Transforming raw data into actionable business insights</li>
+            <li><strong>Software Development</strong> - Creating custom applications and enterprise solutions</li>
+          </ul>
+          <p>T.EN's commitment to innovation and excellence has made it an ideal environment for learning and applying advanced technologies like the Agentic AI Mail Assistant developed during this internship.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Internship Overview Section -->
+  <section id="internship-overview" class="content">
+    <div class="img-container">
+      <img src="assets/ChatGPT Image Sep 7, 2025, 01_02_10 AM.png" alt="Internship Overview Image" class="img">
+      <div class="heading-container">
+        <h1 class="heading">Internship Overview</h1>
+      </div>
+    </div>
+    <div class="body">
+      <div class="internship-info">
+        <div class="internship-details">
+          <div class="detail-card">
+            <h3>Duration</h3>
+            <p>2 Months<br><span class="detail-subtext">July 2025 - September 2025</span></p>
+          </div>
+          <div class="detail-card">
+            <h3>Department</h3>
+            <p>AI & Automation<br><span class="detail-subtext">Research & Development</span></p>
+          </div>
+          <div class="detail-card">
+            <h3>Mentor</h3>
+            <p>Ms. Geetika Pandey<br><span class="detail-subtext">Assistant General Manager</span></p>
+          </div>
+        </div>
+        <div class="internship-text">
+          <p>My internship at <strong>T.EN Global Business Services Pvt. Ltd.</strong> provided an invaluable opportunity to work on cutting-edge AI technologies while contributing to real-world business solutions. The experience was structured to combine theoretical learning with practical implementation, allowing me to develop both technical expertise and professional skills.</p>
+          
+          <h4>Key Responsibilities</h4>
+          <ul>
+            <li><strong>AI System Development</strong> - Designed and implemented the Agentic AI Mail Assistant from concept to deployment</li>
+            <li><strong>API Integration</strong> - Worked extensively with Gmail API and various LLM APIs (Ollama, Gemini)</li>
+            <li><strong>Full-Stack Development</strong> - Built complete solutions including backend logic and frontend interfaces</li>
+            <li><strong>Research & Documentation</strong> - Conducted research on AI agent architectures and documented findings</li>
+          </ul>
+          
+          <h4>Learning Outcomes</h4>
+          <p>This internship significantly enhanced my understanding of enterprise-level AI development, from initial research and prototyping to production deployment. Working alongside experienced professionals provided insights into industry best practices, project management, and the importance of user-centered design in AI applications.</p>
+          
+          <p>The collaborative environment at T.EN fostered continuous learning and innovation, making this internship a transformative experience in my journey toward becoming an AI engineer.</p>
+        </div>
+      </div>
+      
+      <!-- Project Workflow as part of internship -->
+      <div class="workflow-section">
+        <div class="workflow-container">
+          <div class="workflow-title-section">
+            <h2 class="workflow-title">Project Workflow</h2>
+            <p class="workflow-description">
+              The Agentic AI Mail Assistant follows a streamlined five-step process that automates email management from retrieval to response. This workflow demonstrates how AI can enhance productivity while maintaining user control over communications.
+            </p>
+          </div>
+          <div class="workflow-chart">
+          <div class="workflow-item">
+            <div class="workflow-icon">📥</div>
+            <div class="workflow-content">
+              <h3>Fetch Emails</h3>
+              <p>Retrieve latest important emails using Gmail API integration</p>
+            </div>
+          </div>
+          <div class="workflow-item">
+            <div class="workflow-icon">📝</div>
+            <div class="workflow-content">
+              <h3>Summarize</h3>
+              <p>Process email content with LLM to generate concise summaries</p>
+            </div>
+          </div>
+          <div class="workflow-item">
+            <div class="workflow-icon">💬</div>
+            <div class="workflow-content">
+              <h3>Draft Responses</h3>
+              <p>Generate AI-powered draft replies based on email context</p>
+            </div>
+          </div>
+          <div class="workflow-item">
+            <div class="workflow-icon">✅</div>
+            <div class="workflow-content">
+              <h3>User Review</h3>
+              <p>Allow users to review, edit, and approve generated responses</p>
+            </div>
+          </div>
+          <div class="workflow-item">
+            <div class="workflow-icon">📤</div>
+            <div class="workflow-content">
+              <h3>Send Mail</h3>
+              <p>Deliver approved responses directly through Gmail API</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      
+      <!-- User Interface & Features as part of internship -->
+      <div id="ui-features" class="ui-features" style="background: #fff; padding: 4rem 0; margin-top: 3rem;">
+        <div class="ui-features-container">
+          <h2 class="ui-features-title">User Interface & Features</h2>
+          <p class="ui-features-intro">
+            The Agentic AI Mail Assistant features an intuitive Streamlit-based interface designed for seamless email management. 
+            Below are key screenshots showcasing the various functionalities and user interactions.
+          </p>
+          
+          <div class="ui-showcase">
+            <div class="ui-item-bg">
+              <div class="ui-item">
+                <div class="ui-screenshot">
+                  <img src="assets/image.png" alt="AI Mail Agent Homepage" />
+                </div>
+                <div class="ui-description">
+                  <h3>Homepage Dashboard</h3>
+                  <p>
+                    Clean interface displaying prioritized emails with AI-generated summaries for quick email management.
+                  </p>
+                  <ul class="ui-features-list">
+                    <li><strong>Email Prioritization</strong></li>
+                    <li><strong>Smart Summaries</strong></li>
+                    <li><strong>Expandable View</strong></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            <div class="ui-item-bg">
+              <div class="ui-item">
+                <div class="ui-screenshot">
+                  <img src="assets/Screenshot 2025-09-07 030058.png" alt="Expanded Email View" />
+                </div>
+                <div class="ui-description">
+                  <h3>Expanded Email View</h3>
+                  <p>
+                    Detailed view showing full email content with AI-powered response generation and send capabilities.
+                  </p>
+                  <ul class="ui-features-list">
+                    <li><strong>Full Email Content</strong></li>
+                    <li><strong>AI Response Generation</strong></li>
+                    <li><strong>Direct Send Feature</strong></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            <div class="ui-item-bg">
+              <div class="ui-item">
+                <div class="ui-screenshot">
+                  <img src="assets/Screenshot 2025-09-07 030641.png" alt="AI Draft Response Generation" />
+                </div>
+                <div class="ui-description">
+                  <h3>AI Draft Response</h3>
+                  <p>
+                    LLM generates contextual draft replies based on email content with customizable tone and style.
+                  </p>
+                  <ul class="ui-features-list">
+                    <li><strong>Contextual Understanding</strong></li>
+                    <li><strong>Smart Draft Generation</strong></li>
+                    <li><strong>Editable Responses</strong></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            <div class="ui-item-bg">
+              <div class="ui-item">
+                <div class="ui-screenshot">
+                  <img src="assets/Screenshot 2025-09-07 031232.png" alt="Email Send Confirmation" />
+                </div>
+                <div class="ui-description">
+                  <h3>Send Confirmation</h3>
+                  <p>
+                    Review draft, regenerate if needed, and send emails with one-click Gmail API integration.
+                  </p>
+                  <ul class="ui-features-list">
+                    <li><strong>Draft Verification</strong></li>
+                    <li><strong>Regenerate Option</strong></li>
+                    <li><strong>One-Click Send</strong></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            <div class="ui-item-bg">
+              <div class="ui-item">
+                <div class="ui-screenshot">
+                  <img src="assets/Screenshot 2025-09-07 032530.png" alt="Compose New Email" />
+                </div>
+                <div class="ui-description">
+                  <h3>Compose New Email</h3>
+                  <p>
+                    Create emails from scratch using recipient address and brief idea to generate professional drafts.
+                  </p>
+                  <ul class="ui-features-list">
+                    <li><strong>Input-Based Generation</strong></li>
+                    <li><strong>Professional Drafting</strong></li>
+                    <li><strong>Instant Composition</strong></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Tools & Technologies Used as part of internship -->
+      <div class="tools-section">
+        <div class="tools-container">
+          <h2 class="tools-title">Tools & Technologies Used</h2>
+          <p class="tools-intro">
+            The development of the Agentic AI Mail Assistant leveraged a comprehensive technology stack, 
+            combining modern AI frameworks, APIs, and development tools to create a robust and scalable solution.
+          </p>
+          
+          <div class="tech-grid">
+            <div class="tech-card">
+              <div class="tech-image">
+                <img src="assets/python_logo_icon_168886.png" alt="Python" />
+              </div>
+              <h3>Python</h3>
+            </div>
+            
+            <div class="tech-card">
+              <div class="tech-image">
+                <img src="assets/62bda0d7bafda8767a088b3e.png" alt="Gmail API" />
+              </div>
+              <h3>Gmail API</h3>
+            </div>
+            
+            <div class="tech-card">
+              <div class="tech-image">
+                <img src="assets/ollama.png" alt="LLMs" />
+              </div>
+              <h3>LLMs (LLaMA3 & Gemini API)</h3>
+            </div>
+            
+            <div class="tech-card">
+              <div class="tech-image">
+                <img src="assets/fastapi-icon-sv7hsd0o3donlq26es2lr.webp" alt="FastAPI" />
+              </div>
+              <h3>FastAPI</h3>
+            </div>
+            
+            <div class="tech-card">
+              <div class="tech-image">
+                <img src="assets/Streamlit.png" alt="Streamlit" />
+              </div>
+              <h3>Streamlit</h3>
+            </div>
+            
+            <div class="tech-card">
+              <div class="tech-image">
+                <img src="assets/tweenmax.png.cf27916e926fbb328ff214f66b4c8429.png" alt="GSAP" />
+              </div>
+              <h3>GSAP (GreenSock Animation Platform)</h3>
+            </div>
+            
+            <div class="tech-card">
+              <div class="tech-image">
+                <img src="assets/free-html-5-icon-svg-png-download-1175208.webp" alt="HTML, CSS, JavaScript" />
+              </div>
+              <h3>HTML, CSS, JavaScript</h3>
+            </div>
+            
+            <div class="tech-card">
+              <div class="tech-image">
+                <img src="assets/json.png" alt="JSON" />
+              </div>
+              <h3>JSON</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Knowledge and Skills Section -->
+  <section id="knowledge-skills" class="content">
+    <div class="img-container">
+      <img src="assets/glowing-molecular-structure-futuristic-galaxy-backdrop-generated-by-ai (1).jpg" alt="Knowledge and Skills Image" class="img">
+      <div class="heading-container">
+        <h1 class="heading">Knowledge & Skills Acquired</h1>
+      </div>
+    </div>
+    <div class="body">
+      <p>
+        The development of the Agentic AI Mail Assistant provided comprehensive learning opportunities across 
+        multiple technical domains. This hands-on experience enhanced both theoretical understanding and 
+        practical implementation skills in modern AI development.
+      </p>
+      
+      <div class="skills-section">
+        <div class="skills-container">
+          <div class="skills-grid">
+        <div class="skill-item">
+          <h3>API Integration & Authentication</h3>
+          <ul>
+            <li>Learned how to integrate third-party APIs (Gmail API, Gemini API).</li>
+            <li>Gained hands-on experience with OAuth 2.0 authentication for secure communication.</li>
+          </ul>
+        </div>
+        
+        <div class="skill-item">
+          <h3>Large Language Models (LLMs)</h3>
+          <ul>
+            <li>Understood how to use LLMs for tasks like summarization and response generation.</li>
+            <li>Explored differences between local models (LLaMA3 via Ollama) and cloud APIs (Gemini).</li>
+          </ul>
+        </div>
+        
+        <div class="skill-item">
+          <h3>Backend Development</h3>
+          <ul>
+            <li>Built a backend using FastAPI to handle mail retrieval, summarization, and sending workflows.</li>
+            <li>Designed clean endpoints for seamless frontend-backend communication.</li>
+          </ul>
+        </div>
+        
+        <div class="skill-item">
+          <h3>Frontend Development</h3>
+          <ul>
+            <li>Developed an interactive UI using Streamlit, focusing on usability and responsiveness.</li>
+            <li>Experimented with HTML, CSS, and GSAP animations to create an engaging project report webpage.</li>
+          </ul>
+        </div>
+        
+        <div class="skill-item">
+          <h3>Data Handling</h3>
+          <ul>
+            <li>Worked with JSON for storing and retrieving emails efficiently.</li>
+            <li>Optimized the workflow by separating raw emails and summarized emails into structured files.</li>
+          </ul>
+        </div>
+        
+        <div class="skill-item">
+          <h3>Problem-Solving & Optimization</h3>
+          <ul>
+            <li>Improved project performance by minimizing repeated API calls.</li>
+            <li>Designed a workflow that reduces latency and enhances the user experience.</li>
+          </ul>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problems & Solutions Section -->
+  <section id="problems-solutions" class="content">
+    <div class="img-container">
+      <img src="assets/glowing-skyscrapers-illuminate-futuristic-cityscape-night-generated-by-ai.jpg" alt="Problems & Solutions Image" class="img">
+      <div class="heading-container">
+        <h1 class="heading">Problems & Solutions</h1>
+      </div>
+    </div>
+    <div class="body">
+      <p>
+        Throughout the development of the Agentic AI Mail Assistant, several technical challenges were encountered. 
+        Each challenge provided valuable learning opportunities and led to innovative solutions that improved the overall system.
+      </p>
+      
+      <div class="problems-solutions-container">
+        <!-- Problem-Solution Pair 1 -->
+        <div class="problem-solution-pair">
+          <div class="problem-solution-content">
+            <div class="pair-content">
+              <h2 class="problem-heading">1. Slow Performance with Local LLM (LLaMA3 via Ollama)</h2>
+              <div class="problem-solution-cards">
+                <div class="problem-card">
+                  <h3>Problem</h3>
+                  <p>Running LLaMA3 locally was resource-intensive and produced delays in summarization and draft generation.</p>
+                </div>
+                <div class="solution-card">
+                  <h3>Solution</h3>
+                  <p>Shifted to Gemini API, a cloud-based LLM, which significantly improved response speed and overall efficiency.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Problem-Solution Pair 2 -->
+        <div class="problem-solution-pair">
+          <div class="problem-solution-content">
+            <div class="pair-content">
+              <h2 class="problem-heading">2. Repeated API Calls to Gmail</h2>
+              <div class="problem-solution-cards">
+                <div class="problem-card">
+                  <h3>Problem</h3>
+                  <p>Fetching and summarizing emails directly from Gmail API every time caused slowdowns and unnecessary requests.</p>
+                </div>
+                <div class="solution-card">
+                  <h3>Solution</h3>
+                  <p>Designed a two-step JSON workflow:<br>
+                  • Store raw emails in raw_emails.json.<br>
+                  • Summarize and store them in summarized_emails.json.<br>
+                  Frontend retrieves data from JSON, minimizing Gmail API usage.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Problem-Solution Pair 3 -->
+        <div class="problem-solution-pair">
+          <div class="problem-solution-content">
+            <div class="pair-content">
+              <h2 class="problem-heading">3. UI Responsiveness & Usability</h2>
+              <div class="problem-solution-cards">
+                <div class="problem-card">
+                  <h3>Problem</h3>
+                  <p>Early versions of the UI were plain and lacked smooth interactions, making the project less user-friendly.</p>
+                </div>
+                <div class="solution-card">
+                  <h3>Solution</h3>
+                  <p>Introduced Streamlit for interactivity and GSAP animations in the report webpage to improve engagement and navigation.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Problem-Solution Pair 4 -->
+        <div class="problem-solution-pair">
+          <div class="problem-solution-content">
+            <div class="pair-content">
+              <h2 class="problem-heading">4. Secure Email Sending</h2>
+              <div class="problem-solution-cards">
+                <div class="problem-card">
+                  <h3>Problem</h3>
+                  <p>Directly sending emails posed risks without proper authentication.</p>
+                </div>
+                <div class="solution-card">
+                  <h3>Solution</h3>
+                  <p>Integrated Gmail API with OAuth 2.0, ensuring secure, reliable sending of emails.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Problem-Solution Pair 5 -->
+        <div class="problem-solution-pair">
+          <div class="problem-solution-content">
+            <div class="pair-content">
+              <h2 class="problem-heading">5. Draft Generation Accuracy</h2>
+              <div class="problem-solution-cards">
+                <div class="problem-card">
+                  <h3>Problem</h3>
+                  <p>Initial drafts were too verbose or irrelevant.</p>
+                </div>
+                <div class="solution-card">
+                  <h3>Solution</h3>
+                  <p>Optimized prompts for the LLM to strictly generate concise, context-aware replies.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Conclusion Section -->
+  <section id="conclusion" class="content">
+    <div class="img-container">
+      <img src="assets/ChatGPT Image Sep 7, 2025, 01_02_10 AM.png" alt="Conclusion Image" class="img">
+      <div class="heading-container">
+        <h1 class="heading">Conclusion & Suggestions</h1>
+      </div>
+    </div>
+    <div class="body">
+      <p>
+        The development of the Agentic AI Mail Assistant has been a transformative learning experience that provided hands-on exposure to cutting-edge technologies in artificial intelligence, web development, and API integration. This internship project successfully demonstrated the practical application of Large Language Models in automating email management tasks while addressing real-world challenges in performance, security, and user experience.
+      </p>
+      
+      <p>
+        Through this project, I gained valuable insights into the complete software development lifecycle, from initial planning and design to implementation, testing, and optimization. The experience of working with various technologies including Python, Streamlit, Gmail API, Gemini AI, and modern web technologies has significantly enhanced my technical skill set and understanding of AI-driven application development.
+      </p>
+      
+      <p>
+        The successful completion of this project not only achieved its technical objectives but also provided a solid foundation for future endeavors in artificial intelligence and software development. The knowledge gained and challenges overcome during this internship will undoubtedly contribute to my continued growth as a developer and AI enthusiast.
+      </p>
+      
+      <h2>Suggestions for Future Implementation</h2>
+      
+      <h3>1. Enhanced Prioritization</h3>
+      <p>Implement advanced filtering (e.g., NLP-based importance detection) to prioritize truly critical emails.</p>
+      <br>
+      
+      <h3>2. Multi-Account Support</h3>
+      <p>Extend functionality to support multiple Gmail accounts or integration with other providers like Outlook.</p>
+      <br>
+      
+      <h3>3. Offline Drafting</h3>
+      <p>Allow offline draft generation so users can prepare responses without active internet, sending them once reconnected.</p>
+      <br>
+      
+      <h3>4. UI Improvements</h3>
+      <p>Develop a polished web dashboard (React/Next.js) or mobile app for a smoother user experience beyond Streamlit.</p>
+      <br>
+      
+      <h3>5. Voice Command Support</h3>
+      <p>Enable hands-free interaction using speech-to-text for reading and composing emails.</p>
+      <br>
+      
+      <h3>6. Stronger Security Features</h3>
+      <p>Add encryption options and phishing/spam detection to ensure secure and reliable email communication.</p>
+    </div>
+  </section>
+
+  <!-- References Section -->
+  <section id="references" class="content">
+    <div class="img-container">
+      <img src="assets/glowing-skyscrapers-illuminate-futuristic-cityscape-night-generated-by-ai.jpg" alt="References Image" class="img">
+      <div class="heading-container">
+        <h1 class="heading">References</h1>
+      </div>
+    </div>
+    <div class="body">
+      <p><strong>1. Gmail API Documentation - Google Developers</strong><br>
+      <a href="https://developers.google.com/gmail/api/guides" target="_blank">https://developers.google.com/gmail/api/guides</a></p>
+      
+      <p><strong>2. FastAPI Documentation - Official Docs</strong><br>
+      <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a></p>
+
+      <p><strong>3. Streamlit Documentation – Official Docs</strong><br>
+      <a href="https://docs.streamlit.io" target="_blank">https://docs.streamlit.io</a></p>
+
+      <p><strong>4. Ollama (LLaMA3) Documentation</strong><br>
+      <a href="https://ollama.com/search" target="_blank">https://ollama.com/search</a></p>
+
+      <p><strong>5. Google Gemini API - Google AI Studio</strong><br>
+      <a href="https://ai.google.dev" target="_blank">https://ai.google.dev</a></p>
+
+      <p><strong>6. GSAP (GreenSock Animation Platform) - Scroll Animations</strong><br>
+      <a href="https://gsap.com" target="_blank">https://gsap.com</a></p>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <section class="spacer">
+    <div class="footer-content">
+      <div class="footer-left">
+        <img src="assets/TECHNIP_ENERGIES_LOGO_HORIZONTAL_CMJN.png" alt="Company Logo" class="company-logo">
+      </div>
+      <div class="footer-right">
+        <h3>Yash Singh Rautela</h3>
+        <p>Email: <a href="mailto:yashsingh.rautela2004@gmail.com">yashsingh.rautela2004@gmail.com</a></p>
+        <p>Phone: <a href="tel:+917017966329">+91 70179 66329</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/yash-rautela-11ba0925a/" target="_blank">linkedin.com/in/yash-rautela</a></p>
+        <p>GitHub: <a href="https://github.com/yashrXautela" target="_blank">github.com/yashrXautela</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+  
+  <!-- Custom Scripts -->
+  <script src="scripts.js"></script>
+</body>
+</html>
